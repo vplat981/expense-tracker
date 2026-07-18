@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>💰 Expense Tracker</h1>
+            <div class="nav-links">
+                <span id="userEmail" class="user-email"></span>
+                <button onclick="logout()" class="btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="summary-cards">
+            <div class="card">
+                <h3>Today's Total</h3>
+                <p id="todayTotal">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>Today's Expenses</h3>
+                <p id="todayCount">0</p>
+            </div>
+            <div class="card">
+                <h3>This Month</h3>
+                <p id="monthTotal">$0.00</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="chart-container">
+                <h3>Expenses by Category</h3>
+                <canvas id="categoryChart"></canvas>
+            </div>
+
+            <div class="add-expense">
+                <h3>Add New Expense</h3>
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label for="expenseDescription">Description</label>
+                        <input type="text" id="expenseDescription" placeholder="What did you buy?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount ($)</label>
+                        <input type="number" id="expenseAmount" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory">
+                            <option value="Food">Food</option>
+                            <option value="Groceries">Groceries</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Expense</button>
+                </form>
+
+                <div class="receipt-scanner">
+                    <h4>📸 Scan Receipt</h4>
+                    <input type="file" id="receiptImage" accept="image/*" capture="environment">
+                    <button onclick="scanReceipt()" class="btn-secondary">Scan with AI</button>
+                    <div id="scanResults" class="scan-results"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="expenses-list">
+            <h3>Recent Expenses</h3>
+            <div id="expensesList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
